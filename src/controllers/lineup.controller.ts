@@ -56,22 +56,22 @@ export const createLineup = async (
 };
 
 // PUT /api/lineups/:id - update
-export const updateMap = async (
+export const updateLineup = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const updatedMap = await LineupModel.findByIdAndUpdate(
+    const updatedLineup = await LineupModel.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true, runValidators: true }
     );
-    if (!updatedMap) {
+    if (!updatedLineup) {
       res.status(404).json({ error: "Lineup not found" });
       return;
     }
-    res.json(updatedMap);
+    res.json(updatedLineup);
   } catch (err) {
     next(err);
   }
