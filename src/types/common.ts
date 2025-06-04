@@ -8,7 +8,7 @@ export interface Coordinate {
 }
 
 export interface Position {
-  area: string
+  area?: string
   coordinate: Coordinate
 }
 

@@ -30,7 +30,7 @@ const coordinateSchema = new Schema(
 
 const positionSchema = new Schema<PositionSchemaType>(
   {
-    area: { type: Schema.Types.ObjectId, ref: "MapArea", required: true },
+    area: { type: Schema.Types.ObjectId, ref: "MapArea" },
     coordinate: coordinateSchema,
   },
   { _id: false }
