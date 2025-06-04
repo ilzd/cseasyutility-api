@@ -9,19 +9,26 @@ import mapAreaRoutes from './routes/mapArea.routes'
 // Load env variables
 dotenv.config()
 
-// Connect to database
-connectDB()
+async function startServer() {
+  // Connect to database before starting the server
+  await connectDB()
 
-const app = express()
-app.use(cors())
-app.use(express.json())
+  const app = express()
+  app.use(cors())
+  app.use(express.json())
 
-// Routes
-app.use('/api/lineups', lineupRoutes)
-app.use('/api/maps', mapRoutes)
-app.use('/api/mapAreas', mapAreaRoutes)
+  // Routes
+  app.use('/api/lineups', lineupRoutes)
+  app.use('/api/maps', mapRoutes)
+  app.use('/api/mapAreas', mapAreaRoutes)
 
-const PORT = process.env.PORT || 5000
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
+  const PORT = process.env.PORT || 5000
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+  })
+}
+
+startServer().catch((err) => {
+  console.error('Failed to start server:', err)
+  process.exit(1)
 })
